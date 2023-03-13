@@ -1,32 +1,52 @@
 import React from 'react';
-import { Image, ImageBackground, StyleSheet ,Text,View} from 'react-native';
-import image from './assets/img1.png';
-import logo from './assets/logo.png'
-import P from './Screens/S1'
+import { StyleSheet, Text, View ,Image} from 'react-native';
+import bluelogo from './assets/bluelogo.png'
+import { Feather } from '@expo/vector-icons';
+import P from './Screens/S2'
 
 const App = () => {
   return (
-    <ImageBackground source={image} style={styles.image}>
-      <Image source={logo} style={styles.logo}/>
+    <View style={styles.container}>
+      <View style={styles.container1}>
+      <Image source={bluelogo} style={styles.logo} />
+      <Feather name="menu" style={styles.menuIcon} />
       <P></P>
-    </ImageBackground>
+      </View>
+    </View>
   );
 };
 
+export default App;
+
 const styles = StyleSheet.create({
-  image: {
+  container: {
     flex: 1,
-    resizeMode: 'cover',
+    backgroundColor: '#EBECF0',
+    width: '80%',
+    height: '100%',
+    alignItems: 'flex-start',
   },
-  logo:{
-    width: '50%', 
+  container1: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    right:'4%',
+  },
+  logo: {
+    width: '43%',
+    height:'6%', 
     aspectRatio: 1, 
     position: 'absolute', 
-    top: '20%', 
-    left: '7%', 
+    top: '7%', 
+    left: '15%', 
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
+  menuIcon: {
+    fontSize: 22, 
+    top: '18%', 
+    left: '45%', 
+  },
 });
 
-export default App;
+
