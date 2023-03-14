@@ -1,11 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet ,Button} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const DetailScreen = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Detail Screen</Text>
       <Text style={styles.subtitle}>This is where you can see more details.</Text>
+      <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
   );
 };
