@@ -2,47 +2,76 @@ import * as React from 'react';
 import { Button, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Feather } from '@expo/vector-icons';
+
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
 
 function HomeScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button
-        title="Go to Settings"
-        onPress={() => navigation.navigate('Settings')}
+        onPress={() => navigation.navigate('Notifications')}
+        title="Go to notifications"
       />
     </View>
   );
 }
 
-function SettingsScreen({ navigation }) {
-  
+function NotificationsScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button onPress={() => navigation.goBack()} title="Go back home" />
+    </View>
+  );
+}
+
+function FeedScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>feedscreen</Text>
+    </View>
+  );
+}
+
+function ProfileScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>profilescreen</Text>
+    </View>
+  );
+}
+
+function AccountScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>accountscreen</Text>
     </View>
   );
 }
 
 const Tab = createBottomTabNavigator();
 
+function HomeTabs() {
+  return (
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
+      <Tab.Screen name="Feed" component={FeedScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Account" component={AccountScreen} />
+    </Tab.Navigator>
+  );
+}
+
+const Drawer = createDrawerNavigator();
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} options={{
-      tabBarIcon: ({ color, size }) => (
-      <Feather name="home" size={14} color={'black'} />
-    ),
-  }}  />
-        <Tab.Screen name="Settings" component={SettingsScreen} options={{
-      tabBarIcon: ({ color, size }) => (
-      <Feather name="settings" size={14} color={'black'} />
-    ),
-  }}   />
-      </Tab.Navigator>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+        <Drawer.Screen name="HomeTabs" component={HomeTabs} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
+
